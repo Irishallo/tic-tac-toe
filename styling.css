@@ -11,7 +11,7 @@ body {
     background-color: #90d8fa;
     width: 490px;
     height: 490px;
-    margin: auto;
+    margin: 10px auto;
 }
 
 #topleft {
@@ -66,4 +66,9 @@ body {
     grid-column: 3 / 4;
     grid-row: 3 / 4;
     background-color: #fff;
+}
+
+.brdspc {
+    font-size: 140px;
+    text-align: center;
 }
