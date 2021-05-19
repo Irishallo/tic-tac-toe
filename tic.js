@@ -1,6 +1,10 @@
 const gameBoard = (() => {
-    const board = ["X", "O", "O", "O", "X", "O", "O", "O", "X"];
-    function changeboard() {
+    const board = ["", "O", "O", "O", "X", "O", "O", "O", "X"];
+    function changeboard(active , spot) {
+      
+    }
+
+    function showboard() {
       document.getElementById("topleft").innerText = board[0];
       document.getElementById("topmid").innerText = board[1];
       document.getElementById("topright").innerText = board[2];
@@ -11,7 +15,7 @@ const gameBoard = (() => {
       document.getElementById("botmid").innerText = board[7];
       document.getElementById("botright").innerText = board[8];
     }
-    return changeboard();
+    return {changeboard , showboard};
     
   })();
 
@@ -25,7 +29,17 @@ const gameBoard = (() => {
   const player2 = Player('player2', "O");
 
   const displayController = (() => {
-    const display = [];
-    const getActivePlayer = () => {}
-    return {display , getActivePlayer}
+    let activePlayer = 1;
+    const topL = document.getElementById("topleft");
+    const topM = document.getElementById("topmid");
+    const topr = document.getElementById("topright");
+    const midL = document.getElementById("midleft");
+    const midM = document.getElementById("midmid");
+    const midR = document.getElementById("midright");
+    const botL = document.getElementById("botleft");
+    const botM = document.getElementById("botmid");
+    const botR = document.getElementById("botright");
+
+    topL.addEventListener("click", gameBoard.changeboard(activePlayer, 0));
+    return {activePlayer}
   })();
