@@ -1,7 +1,20 @@
 const gameBoard = (() => {
     const board = ["", "O", "O", "O", "X", "O", "O", "O", "X"];
     function changeboard(active , spot) {
-      
+      if(board[spot] == "") {
+        if(active == 1) {
+          board[spot] = player1.getToken;
+          console.log(board[spot]);
+        } else if (active == 2) {
+          board[spot] = player2.getToken;
+          console.log(board[spot]);
+        } else {
+          console.log("ging iets mis");
+        }
+        
+      } else {
+        console.log("not working");
+      }
     }
 
     function showboard() {
@@ -15,14 +28,14 @@ const gameBoard = (() => {
       document.getElementById("botmid").innerText = board[7];
       document.getElementById("botright").innerText = board[8];
     }
-    return {changeboard , showboard};
+    return {showboard};
     
   })();
 
   const Player = (name, symbol) => {
     const getName  = () => name;
-    const getSymbol = () => symbol;
-    return {getName , getSymbol}
+     const getToken = symbol;
+    return {getName , getToken}
   };
   
   const player1 = Player('player1', "X");
@@ -30,9 +43,21 @@ const gameBoard = (() => {
 
   const displayController = (() => {
     let activePlayer = 1;
+    function changeActive () {
+      if(activePlayer == 1) {
+        activePlayer = 2;
+        console.log(activePlayer);
+      } else if(activePlayer == 2){
+        activePlayer = 1;
+        console.log(activePlayer);
+      } else {
+        console.log("error");
+        console.log(activePlayer);
+      }
+    }
     const topL = document.getElementById("topleft");
     const topM = document.getElementById("topmid");
-    const topr = document.getElementById("topright");
+    const topR = document.getElementById("topright");
     const midL = document.getElementById("midleft");
     const midM = document.getElementById("midmid");
     const midR = document.getElementById("midright");
@@ -41,5 +66,21 @@ const gameBoard = (() => {
     const botR = document.getElementById("botright");
 
     topL.addEventListener("click", gameBoard.changeboard(activePlayer, 0));
-    return {activePlayer}
+    topL.addEventListener("click", changeActive);
+    topM.addEventListener("click", gameBoard.changeboard(activePlayer, 1));
+    topM.addEventListener("click", changeActive);
+    topR.addEventListener("click", gameBoard.changeboard(activePlayer, 2));
+    topR.addEventListener("click", changeActive);
+    midL.addEventListener("click", gameBoard.changeboard(activePlayer, 3));
+    midL.addEventListener("click", changeActive);
+    midM.addEventListener("click", gameBoard.changeboard(activePlayer, 4));
+    midM.addEventListener("click", changeActive);
+    midR.addEventListener("click", gameBoard.changeboard(activePlayer, 5));
+    midR.addEventListener("click", changeActive);
+    botL.addEventListener("click", gameBoard.changeboard(activePlayer, 6));
+    botL.addEventListener("click", changeActive);
+    botM.addEventListener("click", gameBoard.changeboard(activePlayer, 7));
+    botM.addEventListener("click", changeActive);
+    botR.addEventListener("click", gameBoard.changeboard(activePlayer, 8));
+    botR.addEventListener("click", changeActive);
   })();
