@@ -1,15 +1,20 @@
 const gameBoard = (() => {
     const board = ["", "", "", "", "", "", "", "", ""];
+    let activateCB = 0;
     function changeboard(active , spot) {
       if(board[spot] == "") {
         if(active == 1) {
           board[spot] = player1.getToken;
-          console.log(board[spot]);
+          activateCB = 1;
+          console.log(activateCB);
           showboard();
+          return activateCB;
         } else if (active == 2) {
           board[spot] = player2.getToken;
-          console.log(board[spot])
+          activateCB = 1;
+          console.log(activateCB);
           showboard();
+          return activateCB;
         } else {
           console.log("ging iets mis");
         }
@@ -35,7 +40,7 @@ const gameBoard = (() => {
       
     }
 
-    return {changeboard, showboard};
+    return {activateCB, changeboard, showboard};
     
   })();
 
@@ -50,17 +55,22 @@ const gameBoard = (() => {
 
   const displayController = (() => {
     let activePlayer = 1;
-    function changeActive () {
-      if(activePlayer == 1) {
-        activePlayer = 2;
-        console.log(activePlayer);
-      } else if(activePlayer == 2){
-        activePlayer = 1;
-        console.log(activePlayer);
+    function changeActive (boardchange) {
+      if(boardchange == 1) {
+        if(activePlayer == 1) {
+          activePlayer = 2;
+          console.log(activePlayer);
+        } else if(activePlayer == 2){
+          activePlayer = 1;
+          console.log(activePlayer);
+        } else {
+          console.log("error");
+          console.log(activePlayer);
+        }
       } else {
-        console.log("error");
-        console.log(activePlayer);
+        return
       }
+      
     }
     const topL = document.getElementById("topleft");
     const topM = document.getElementById("topmid");
@@ -74,47 +84,47 @@ const gameBoard = (() => {
 
     topL.addEventListener("click", () => {
       gameBoard.changeboard(activePlayer, 0);
-      changeActive();
+      changeActive(gameBoard.activateCB);
     });
    
     topM.addEventListener("click", () => {
       gameBoard.changeboard(activePlayer, 1);
-      changeActive();
+      changeActive(gameBoard.activateCB);
     });
     
     topR.addEventListener("click", () => {
       gameBoard.changeboard(activePlayer, 2);
-      changeActive();
+      changeActive(gameBoard.activateCB);
     });
   
     midL.addEventListener("click", () => {
       gameBoard.changeboard(activePlayer, 3);
-      changeActive();
+      changeActive(gameBoard.activateCB);
     });
    
     midM.addEventListener("click", () => {
       gameBoard.changeboard(activePlayer, 4);
-      changeActive();
+      changeActive(gameBoard.activateCB);
     });
     
     midR.addEventListener("click", () => {
       gameBoard.changeboard(activePlayer, 5);
-      changeActive();
+      changeActive(gameBoard.activateCB);
     });
     
     botL.addEventListener("click", () => {
       gameBoard.changeboard(activePlayer, 6);
-      changeActive();
+      changeActive(gameBoard.activateCB);
     });
     
     botM.addEventListener("click", () => {
       gameBoard.changeboard(activePlayer, 7);
-      changeActive();
+      changeActive(gameBoard.activateCB);
     });
     
     botR.addEventListener("click", () => {
       gameBoard.changeboard(activePlayer, 8);
-      changeActive();
+      changeActive(gameBoard.activateCB);
     });
     
   })();
