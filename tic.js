@@ -9,12 +9,14 @@ const gameBoard = (() => {
           placed = "yes";
            console.log(placed);
           showBoard();
+          checkWin();
           displayController.changeActive(placed);
         } else if (active == 2) {
           board[spot] = player2.getToken;
           placed = "yes";
            console.log(placed);
           showBoard();
+          checkWin();
           displayController.changeActive(placed);
         } else {
           console.log("ging iets mis");
@@ -41,10 +43,29 @@ const gameBoard = (() => {
     
 
     function checkWin() {
-      
+      console.log(board);
+      if(board[0] === board[1] && board[1] === board[2] && !board[1] == "") {
+        console.log("you win!");
+      } else if(board[3] === board[4] && board[4] === board[5] && !board[4] == "") {
+        console.log("you win!");
+      } else if(board[6] === board[7] && board[7] === board[8] && !board[7] == "") {
+        console.log("you win!");
+      } else if(board[0] === board[3] && board[3] === board[6] && !board[3] == "") {
+        console.log("you win!");
+      } else if(board[1] === board[4] && board[4] === board[7] && !board[4] == "") {
+        console.log("you win!");
+      } else if(board[2] === board[5] && board[5] === board[8] && !board[5] == "") {
+        console.log("you win!");
+      } else if(board[0] === board[4] && board[4] === board[8] && !board[4] == "") {
+        console.log("you win!");
+      } else if(board[2] === board[4] && board[4] === board[6] && !board[4] == "") {
+        console.log("you win!");
+      } else {
+        console.log("keep trying");
+      }
     }
 
-    return {changeBoard, showBoard};
+    return {changeBoard, showBoard , checkWin};
     
   })();
 
@@ -89,47 +110,47 @@ const gameBoard = (() => {
 
     topL.addEventListener("click", () => {
       gameBoard.changeBoard(activePlayer, 0);
-      // changeActive(gameBoard.changeBoard.placed);
+      // gameBoard.checkWin();
     });
    
     topM.addEventListener("click", () => {
       gameBoard.changeBoard(activePlayer, 1);
-      // changeActive(gameBoard.placed);
+      // gameBoard.checkWin();
     });
     
     topR.addEventListener("click", () => {
       gameBoard.changeBoard(activePlayer, 2);
-      // changeActive(gameBoard.placed);
+      // gameBoard.checkWin();
     });
   
     midL.addEventListener("click", () => {
       gameBoard.changeBoard(activePlayer, 3);
-      // changeActive(gameBoard.placed);
+      // gameBoard.checkWin();
     });
    
     midM.addEventListener("click", () => {
       gameBoard.changeBoard(activePlayer, 4);
-      // changeActive(gameBoard.placed);
+      // gameBoard.checkWin();
     });
     
     midR.addEventListener("click", () => {
       gameBoard.changeBoard(activePlayer, 5);
-      // changeActive(gameBoard.placed);
+      // gameBoard.checkWin();
     });
     
     botL.addEventListener("click", () => {
       gameBoard.changeBoard(activePlayer, 6);
-      // changeActive(gameBoard.placed);
+      // gameBoard.checkWin();
     });
     
     botM.addEventListener("click", () => {
       gameBoard.changeBoard(activePlayer, 7);
-      // changeActive(gameBoard.placed);
+      // gameBoard.checkWin();
     });
     
     botR.addEventListener("click", () => {
       gameBoard.changeBoard(activePlayer, 8);
-      // changeActive(gameBoard.placed);
+      // gameBoard.checkWin();
     });
     
     return {changeActive}
