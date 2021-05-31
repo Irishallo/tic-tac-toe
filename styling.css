@@ -76,3 +76,9 @@ body {
     -ms-user-select: none; /* IE 10 and IE 11 */
     user-select: none; /* Standard syntax */
 }
+
+#gamedisplay {
+    background-color: #90d8fa;
+    width: 200px;
+    height: 300px;
+}

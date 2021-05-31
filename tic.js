@@ -46,26 +46,49 @@ const gameBoard = (() => {
       console.log(board);
       if(board[0] === board[1] && board[1] === board[2] && !board[1] == "") {
         console.log("you win!");
+        wonTheGame()
+        console.log(board);
       } else if(board[3] === board[4] && board[4] === board[5] && !board[4] == "") {
         console.log("you win!");
+        wonTheGame()
+        console.log(board);
       } else if(board[6] === board[7] && board[7] === board[8] && !board[7] == "") {
         console.log("you win!");
+        wonTheGame()
+        console.log(board);
       } else if(board[0] === board[3] && board[3] === board[6] && !board[3] == "") {
         console.log("you win!");
+        wonTheGame()
+        console.log(board);
       } else if(board[1] === board[4] && board[4] === board[7] && !board[4] == "") {
         console.log("you win!");
+        wonTheGame()
+        console.log(board);
       } else if(board[2] === board[5] && board[5] === board[8] && !board[5] == "") {
         console.log("you win!");
+        wonTheGame()
+        console.log(board);
       } else if(board[0] === board[4] && board[4] === board[8] && !board[4] == "") {
         console.log("you win!");
+        wonTheGame()
+        console.log(board);
       } else if(board[2] === board[4] && board[4] === board[6] && !board[4] == "") {
         console.log("you win!");
+        wonTheGame()
+        console.log(board);
       } else {
         console.log("keep trying");
       }
     }
 
-    return {changeBoard, showBoard , checkWin};
+    function wonTheGame() {
+      for (i = 0; i < board.length; i++) {
+        if(board[i] === "")
+        board[i] = "-";
+      }
+    }
+
+    return {changeBoard, showBoard , checkWin , board};
     
   })();
 
@@ -82,7 +105,6 @@ const gameBoard = (() => {
     let activePlayer = 1;
     function changeActive (boardchange) {
       console.log(boardchange);
-      // if(boardchange == "yes") {
         if(activePlayer == 1) {
           activePlayer = 2;
           console.log(activePlayer);
@@ -93,9 +115,6 @@ const gameBoard = (() => {
           console.log("error");
           console.log(activePlayer);
         }
-      // } else {
-      //   return
-      // }
     }
 
     const topL = document.getElementById("topleft");
@@ -110,47 +129,38 @@ const gameBoard = (() => {
 
     topL.addEventListener("click", () => {
       gameBoard.changeBoard(activePlayer, 0);
-      // gameBoard.checkWin();
     });
    
     topM.addEventListener("click", () => {
       gameBoard.changeBoard(activePlayer, 1);
-      // gameBoard.checkWin();
     });
     
     topR.addEventListener("click", () => {
       gameBoard.changeBoard(activePlayer, 2);
-      // gameBoard.checkWin();
     });
   
     midL.addEventListener("click", () => {
       gameBoard.changeBoard(activePlayer, 3);
-      // gameBoard.checkWin();
     });
    
     midM.addEventListener("click", () => {
       gameBoard.changeBoard(activePlayer, 4);
-      // gameBoard.checkWin();
     });
     
     midR.addEventListener("click", () => {
       gameBoard.changeBoard(activePlayer, 5);
-      // gameBoard.checkWin();
     });
     
     botL.addEventListener("click", () => {
       gameBoard.changeBoard(activePlayer, 6);
-      // gameBoard.checkWin();
     });
     
     botM.addEventListener("click", () => {
       gameBoard.changeBoard(activePlayer, 7);
-      // gameBoard.checkWin();
     });
     
     botR.addEventListener("click", () => {
       gameBoard.changeBoard(activePlayer, 8);
-      // gameBoard.checkWin();
     });
     
     return {changeActive}
