@@ -81,4 +81,22 @@ body {
     background-color: #90d8fa;
     width: 200px;
     height: 300px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+#playerinput {
+    text-align: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#display {
+    text-align: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    visibility: hidden;
 }

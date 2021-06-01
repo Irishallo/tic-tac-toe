@@ -93,7 +93,7 @@ const gameBoard = (() => {
   })();
 
   const Player = (name, symbol) => {
-    const getName  = () => name;
+    const getName  = name;
      const getToken = symbol;
     return {getName , getToken}
   };
@@ -117,6 +117,17 @@ const gameBoard = (() => {
         }
     }
 
+    function startGame () {
+      player1.name = document.getElementById("pl1").value;
+      player2.name = document.getElementById("pl2").value;
+      const playerInput = document.getElementById("playerinput");
+      playerInput.style.visibility = "hidden";
+      const displayTekst = document.getElementById("display");
+      displayTekst.style.visibility = "visible";
+      const displayTxt = document.getElementById("displaytxt");
+      displayTxt.innerHTML = `it's ${player1.name}'s turn`;
+    }
+
     const topL = document.getElementById("topleft");
     const topM = document.getElementById("topmid");
     const topR = document.getElementById("topright");
@@ -126,6 +137,11 @@ const gameBoard = (() => {
     const botL = document.getElementById("botleft");
     const botM = document.getElementById("botmid");
     const botR = document.getElementById("botright");
+    const startBtn = document.getElementById("start");
+
+    startBtn.addEventListener("click", () => {
+      startGame();
+    });
 
     topL.addEventListener("click", () => {
       gameBoard.changeBoard(activePlayer, 0);
