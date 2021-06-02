@@ -84,19 +84,17 @@ body {
     position: absolute;
     top: 10px;
     left: 10px;
+    text-align: center;
+    visibility: hidden;
 }
 
 #playerinput {
     text-align: center;
     position: absolute;
-    top: 0;
-    left: 0;
-}
-
-#display {
-    text-align: center;
-    position: absolute;
-    top: 0;
-    left: 0;
-    visibility: hidden;
+    top: 30%;
+    left: calc(50% - 200px);
+    background-color: #90d8fa;
+    width: 400px;
+    height: 200px;
+    border: 1px black solid;
 }

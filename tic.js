@@ -1,23 +1,23 @@
 const gameBoard = (() => {
     const board = ["", "", "", "", "", "", "", "", ""];
     
-    function changeBoard(active , spot) {
+    function changeBoard(active , spot , start) {
       let placed = "no";
-      if(board[spot] == "") {
+      if(board[spot] == "" && start == "yes") {
         if(active == 1) {
           board[spot] = player1.getToken;
           placed = "yes";
            console.log(placed);
           showBoard();
-          checkWin();
           displayController.changeActive(placed);
+          checkWin();
         } else if (active == 2) {
           board[spot] = player2.getToken;
           placed = "yes";
            console.log(placed);
           showBoard();
-          checkWin();
           displayController.changeActive(placed);
+          checkWin();
         } else {
           console.log("ging iets mis");
         }
@@ -46,49 +46,83 @@ const gameBoard = (() => {
       console.log(board);
       if(board[0] === board[1] && board[1] === board[2] && !board[1] == "") {
         console.log("you win!");
-        wonTheGame()
+        wonTheGame(board[1])
         console.log(board);
       } else if(board[3] === board[4] && board[4] === board[5] && !board[4] == "") {
         console.log("you win!");
-        wonTheGame()
+        wonTheGame(board[4])
         console.log(board);
       } else if(board[6] === board[7] && board[7] === board[8] && !board[7] == "") {
         console.log("you win!");
-        wonTheGame()
+        wonTheGame(board[7])
         console.log(board);
       } else if(board[0] === board[3] && board[3] === board[6] && !board[3] == "") {
         console.log("you win!");
-        wonTheGame()
+        wonTheGame(board[3])
         console.log(board);
       } else if(board[1] === board[4] && board[4] === board[7] && !board[4] == "") {
         console.log("you win!");
-        wonTheGame()
+        wonTheGame(board[4])
         console.log(board);
       } else if(board[2] === board[5] && board[5] === board[8] && !board[5] == "") {
         console.log("you win!");
-        wonTheGame()
+        wonTheGame(board[5])
         console.log(board);
       } else if(board[0] === board[4] && board[4] === board[8] && !board[4] == "") {
         console.log("you win!");
-        wonTheGame()
+        wonTheGame(board[4])
         console.log(board);
       } else if(board[2] === board[4] && board[4] === board[6] && !board[4] == "") {
         console.log("you win!");
-        wonTheGame()
+        wonTheGame(board[4])
         console.log(board);
+      } else if(!board[0] == "" && !board[1] == "" && !board[2] == "" &&  !board[3] == "" &&
+       !board[4] == "" && !board[5] == "" && !board[6] == "" && !board[7] == "" && !board[8] == "") {
+        const displayTxt = document.getElementById("displaytxt");
+        displayTxt.innerHTML = `It's a Tie!`;
+        console.log('its a tie');
       } else {
         console.log("keep trying");
       }
     }
 
-    function wonTheGame() {
+    function wonTheGame(token) {
       for (i = 0; i < board.length; i++) {
         if(board[i] === "")
         board[i] = "-";
       }
+
+      if(token == "X") {
+        const displayTxt = document.getElementById("displaytxt");
+        displayTxt.innerHTML = `${player1.name} won!`;
+      } else if(token == "O") {
+        const displayTxt = document.getElementById("displaytxt");
+        displayTxt.innerHTML = `${player2.name} won!`;
+      } else {
+        return
+      }
     }
 
-    return {changeBoard, showBoard , checkWin , board};
+    function restartGame(activePlayer) {
+      for (i = 0; i < board.length; i++) {
+        if(board[i] === "X" || board[i] === "O" || board[i] === "-")
+        board[i] = "";
+      }
+      showBoard();
+      if(activePlayer == 1) {
+        const displayTxt = document.getElementById("displaytxt");
+        displayTxt.innerHTML = `it's ${player2.name}'s turn`;
+      } else if(activePlayer == 2){
+        const displayTxt = document.getElementById("displaytxt");
+        displayTxt.innerHTML = `it's ${player1.name}'s turn`;
+      } else {
+        console.log("error");
+        console.log(activePlayer);
+      }
+      
+    }
+
+    return {changeBoard, showBoard , checkWin , board , restartGame};
     
   })();
 
@@ -103,14 +137,17 @@ const gameBoard = (() => {
 
   const displayController = (() => {
     let activePlayer = 1;
+    let gameStart = "no";
     function changeActive (boardchange) {
       console.log(boardchange);
         if(activePlayer == 1) {
           activePlayer = 2;
-          console.log(activePlayer);
+          const displayTxt = document.getElementById("displaytxt");
+          displayTxt.innerHTML = `it's ${player2.name}'s turn`;
         } else if(activePlayer == 2){
           activePlayer = 1;
-          console.log(activePlayer);
+          const displayTxt = document.getElementById("displaytxt");
+          displayTxt.innerHTML = `it's ${player1.name}'s turn`;
         } else {
           console.log("error");
           console.log(activePlayer);
@@ -122,11 +159,13 @@ const gameBoard = (() => {
       player2.name = document.getElementById("pl2").value;
       const playerInput = document.getElementById("playerinput");
       playerInput.style.visibility = "hidden";
-      const displayTekst = document.getElementById("display");
+      const displayTekst = document.getElementById("gamedisplay");
       displayTekst.style.visibility = "visible";
       const displayTxt = document.getElementById("displaytxt");
       displayTxt.innerHTML = `it's ${player1.name}'s turn`;
+      gameStart = "yes";
     }
+
 
     const topL = document.getElementById("topleft");
     const topM = document.getElementById("topmid");
@@ -138,45 +177,55 @@ const gameBoard = (() => {
     const botM = document.getElementById("botmid");
     const botR = document.getElementById("botright");
     const startBtn = document.getElementById("start");
+    const restartBtn = document.getElementById("restart");
+    const nameChangeBtn = document.getElementById("namechange");
 
     startBtn.addEventListener("click", () => {
       startGame();
     });
 
+    restartBtn.addEventListener("click", () => {
+      gameBoard.restartGame(activePlayer);
+    });
+
+    // nameChangeBtn.addEventListener("click", () => {
+    //   startGame();
+    // });
+
     topL.addEventListener("click", () => {
-      gameBoard.changeBoard(activePlayer, 0);
+      gameBoard.changeBoard(activePlayer, 0, gameStart);
     });
    
     topM.addEventListener("click", () => {
-      gameBoard.changeBoard(activePlayer, 1);
+      gameBoard.changeBoard(activePlayer, 1, gameStart);
     });
     
     topR.addEventListener("click", () => {
-      gameBoard.changeBoard(activePlayer, 2);
+      gameBoard.changeBoard(activePlayer, 2, gameStart);
     });
   
     midL.addEventListener("click", () => {
-      gameBoard.changeBoard(activePlayer, 3);
+      gameBoard.changeBoard(activePlayer, 3, gameStart);
     });
    
     midM.addEventListener("click", () => {
-      gameBoard.changeBoard(activePlayer, 4);
+      gameBoard.changeBoard(activePlayer, 4, gameStart);
     });
     
     midR.addEventListener("click", () => {
-      gameBoard.changeBoard(activePlayer, 5);
+      gameBoard.changeBoard(activePlayer, 5, gameStart);
     });
     
     botL.addEventListener("click", () => {
-      gameBoard.changeBoard(activePlayer, 6);
+      gameBoard.changeBoard(activePlayer, 6, gameStart);
     });
     
     botM.addEventListener("click", () => {
-      gameBoard.changeBoard(activePlayer, 7);
+      gameBoard.changeBoard(activePlayer, 7, gameStart);
     });
     
     botR.addEventListener("click", () => {
-      gameBoard.changeBoard(activePlayer, 8);
+      gameBoard.changeBoard(activePlayer, 8, gameStart);
     });
     
     return {changeActive}
