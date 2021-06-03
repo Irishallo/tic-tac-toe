@@ -94,10 +94,10 @@ const gameBoard = (() => {
 
       if(token == "X") {
         const displayTxt = document.getElementById("displaytxt");
-        displayTxt.innerHTML = `${player1.name} won!`;
+        displayTxt.innerHTML = `${player1.name} (${player1.getToken}) won!`;
       } else if(token == "O") {
         const displayTxt = document.getElementById("displaytxt");
-        displayTxt.innerHTML = `${player2.name} won!`;
+        displayTxt.innerHTML = `${player2.name} (${player2.getToken}) won!`;
       } else {
         return
       }
@@ -111,10 +111,10 @@ const gameBoard = (() => {
       showBoard();
       if(activePlayer == 1) {
         const displayTxt = document.getElementById("displaytxt");
-        displayTxt.innerHTML = `it's ${player2.name}'s turn`;
+        displayTxt.innerHTML = `(${player2.getToken}) it's ${player2.name}'s turn`;
       } else if(activePlayer == 2){
         const displayTxt = document.getElementById("displaytxt");
-        displayTxt.innerHTML = `it's ${player1.name}'s turn`;
+        displayTxt.innerHTML = `(${player1.getToken}) it's ${player1.name}'s turn`;
       } else {
         console.log("error");
         console.log(activePlayer);
@@ -143,11 +143,11 @@ const gameBoard = (() => {
         if(activePlayer == 1) {
           activePlayer = 2;
           const displayTxt = document.getElementById("displaytxt");
-          displayTxt.innerHTML = `it's ${player2.name}'s turn`;
+          displayTxt.innerHTML = `(${player2.getToken}) it's ${player2.name}'s turn`;
         } else if(activePlayer == 2){
           activePlayer = 1;
           const displayTxt = document.getElementById("displaytxt");
-          displayTxt.innerHTML = `it's ${player1.name}'s turn`;
+          displayTxt.innerHTML = `(${player1.getToken}) it's ${player1.name}'s turn`;
         } else {
           console.log("error");
           console.log(activePlayer);
@@ -155,14 +155,24 @@ const gameBoard = (() => {
     }
 
     function startGame () {
-      player1.name = document.getElementById("pl1").value;
-      player2.name = document.getElementById("pl2").value;
+      if(document.getElementById("pl1").value == "") {
+        player1.name = "player1";
+      } else {
+        player1.name = document.getElementById("pl1").value;
+      }
+      
+      if(document.getElementById("pl2").value == "") {
+        player2.name = "player2";
+      } else {
+        player2.name = document.getElementById("pl2").value;
+      }
+      
       const playerInput = document.getElementById("playerinput");
       playerInput.style.visibility = "hidden";
       const displayTekst = document.getElementById("gamedisplay");
       displayTekst.style.visibility = "visible";
       const displayTxt = document.getElementById("displaytxt");
-      displayTxt.innerHTML = `it's ${player1.name}'s turn`;
+      displayTxt.innerHTML = `(${player1.getToken}) it's ${player1.name}'s turn`;
       gameStart = "yes";
     }
 
