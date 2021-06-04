@@ -176,6 +176,16 @@ const gameBoard = (() => {
       gameStart = "yes";
     }
 
+    function changeNames () { 
+      console.log("change names");  
+      const playerInput = document.getElementById("playerinput");
+      playerInput.style.visibility = "visible";
+      const displayTekst = document.getElementById("gamedisplay");
+      displayTekst.style.visibility = "hidden";
+      gameStart = "no";
+      restartGame(1);
+    }
+
 
     const topL = document.getElementById("topleft");
     const topM = document.getElementById("topmid");
@@ -198,9 +208,9 @@ const gameBoard = (() => {
       gameBoard.restartGame(activePlayer);
     });
 
-    // nameChangeBtn.addEventListener("click", () => {
-    //   startGame();
-    // });
+     nameChangeBtn.addEventListener("click", () => {
+       changeNames();
+     });
 
     topL.addEventListener("click", () => {
       gameBoard.changeBoard(activePlayer, 0, gameStart);
