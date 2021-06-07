@@ -40,8 +40,6 @@ const gameBoard = (() => {
       document.getElementById("botright").innerText = board[8];
     }
 
-    
-
     function checkWin() {
       console.log(board);
       if(board[0] === board[1] && board[1] === board[2] && !board[1] == "") {
@@ -183,7 +181,7 @@ const gameBoard = (() => {
       const displayTekst = document.getElementById("gamedisplay");
       displayTekst.style.visibility = "hidden";
       gameStart = "no";
-      restartGame(1);
+      gameBoard.restartGame(1);
     }
 
 

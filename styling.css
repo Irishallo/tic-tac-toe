@@ -87,28 +87,20 @@ h1 {
 #playerinput {
     text-align: center;
     position: absolute;
-    top: calc(50% - 100px);
-    left: calc(50% - 200px);
     background: rgb(144,216,250);
     background: linear-gradient(180deg, rgba(144,216,250,1) 0%, rgba(59,164,214,1) 100%);
-    width: 400px;
-    height: 200px;
     border: 1px black solid;
-    padding-top: 20px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 button {
-    font-size: 14px;
-    padding: 6px 18px;
     background: rgb(244,177,4);
     background: linear-gradient(0deg, rgba(244,177,4,1) 0%, rgba(255,214,99,1) 100%);
     border: 2px solid #f99600;
     border-radius: 5px;
     color: black;
 }
-
-  
+ 
 button:hover {
     background: rgb(244,141,4);
     background: linear-gradient(0deg, rgba(244,141,4,1) 0%, rgba(255,193,99,1) 100%);
@@ -118,21 +110,13 @@ button:active {
     transform: translateY(2px);
 }
 
-input {
-    margin-bottom: 10px;
-}
-
-#displaytxt {
-    padding-bottom: 50px;
-}
-
  /* Extra small devices (phones, 600px and down) */
- @media only screen and (max-width: 600px) {
+ @media only screen and (max-width: 600px) and (orientation: portrait) {
     h1 {
         font-size: 40px;
         width: 90vw;
-        padding-top: 10px;
-        margin-left: 5vw;
+        margin: auto;
+        text-align: center;
     }
 
     #container {
@@ -142,7 +126,7 @@ input {
         width: 90vw;
         height: 90vw;
         position: absolute;
-        top: calc(45% - (90vw / 2));
+        top: calc(40% - (90vw / 2));
         left: calc(50% - (90vw / 2));
     }
 
@@ -154,9 +138,31 @@ input {
         width: 90vw;
         height: 25vh;
         position: absolute;
-        top: 72vh;
-        left: 10px;
+        top: 67vh;
+        left: calc(50% - 45vw);
         padding-top: 20px;
+    }
+
+    #playerinput {
+        top: calc(50% - 50vw);
+        left: calc(50% - 45vw);
+        width: 90vw;
+        height: 200px;
+        padding-top: 20px;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 6px 18px;
+    }
+
+    input {
+        margin-bottom: 15px;
+        margin-top: 5px;
+    }
+    
+    #displaytxt {
+        padding-bottom: 50px;
     }
  }
 
@@ -164,31 +170,55 @@ input {
  @media only screen and (min-width: 600px) {
     h1 {
         font-size: 50px;
-        padding-left: 10px;
+        width: 90vw;
+        margin: auto;
+        text-align: center;
     }
 
     #container {
-        grid-template-columns: repeat(3, 150px);
-        grid-template-rows: repeat(3, 150px);
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
         grid-gap: 20px;
-        width: 490px;
-        height: 490px;
+        width: 90vw;
+        height: 90vw;
         position: absolute;
-        top: calc(50% - 245px);
-        left: calc(50% - 245px);
+        top: calc(40% - (90vw / 2));
+        left: calc(50% - (90vw / 2));
     }
 
     .brdspc {
-        font-size: 140px;
+        font-size: 150px;
     }
 
     #gamedisplay {
-        width: 300px;
-        height: 200px;
+        width: 90vw;
+        height: 25vh;
         position: absolute;
-        top: calc(50% - 100px);
-        left: 10px;
+        top: 70vh;
+        left: calc(50% - 45vw);
         padding-top: 20px;
+    }
+
+    #playerinput {
+        top: calc(40% - (200px / 2));
+        left: calc(50% - 200px);
+        width: 400px;
+        height: 200px;
+        padding-top: 25px;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 6px 18px;
+    }
+
+    input {
+        margin-bottom: 10px;
+        margin-top: 5px;
+    }
+    
+    #displaytxt {
+        padding-bottom: 50px;
     }
  }
  
@@ -222,6 +252,28 @@ input {
         left: 10px;
         padding-top: 20px;
     }
+
+    #playerinput {
+        top: calc(50% - 100px);
+        left: calc(50% - 200px);
+        width: 400px;
+        height: 200px;
+        padding-top: 20px;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 6px 18px;
+    }
+
+    input {
+        margin-bottom: 10px;
+        margin-top: 5px;
+    }
+    
+    #displaytxt {
+        padding-bottom: 50px;
+    }
  }
  
  /* Large devices (laptops/desktops, 992px and up) */
@@ -254,6 +306,28 @@ input {
         left: 10px;
         padding-top: 20px;
     }
+
+    #playerinput {
+        top: calc(50% - 100px);
+        left: calc(50% - 200px);
+        width: 400px;
+        height: 200px;
+        padding-top: 20px;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 6px 18px;
+    }
+
+    input {
+        margin-bottom: 10px;
+        margin-top: 5px;
+    }
+    
+    #displaytxt {
+        padding-bottom: 50px;
+    }
  }
  
  /* Extra large devices (large laptops and desktops, 1200px and up) */
@@ -285,5 +359,27 @@ input {
         top: calc(50% - 100px);
         left: 10px;
         padding-top: 20px;
+    }
+
+    #playerinput {
+        top: calc(50% - 100px);
+        left: calc(50% - 200px);
+        width: 400px;
+        height: 200px;
+        padding-top: 20px;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 6px 18px;
+    }
+
+    input {
+        margin-bottom: 10px;
+        margin-top: 5px;
+    }
+    
+    #displaytxt {
+        padding-bottom: 50px;
     }
  } 
