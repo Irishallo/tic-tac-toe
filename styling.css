@@ -12,6 +12,8 @@ h1 {
 #container {
     background-color: #90d8fa;
     display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
 }
 
 #topleft {
@@ -110,8 +112,9 @@ button:active {
     transform: translateY(2px);
 }
 
- /* Extra small devices (phones, 600px and down) */
- @media only screen and (max-width: 600px) and (orientation: portrait) {
+/* portrait mode */
+
+/* @media only screen and (orientation: portrait) {
     h1 {
         font-size: 40px;
         width: 90vw;
@@ -120,8 +123,6 @@ button:active {
     }
 
     #container {
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(3, 1fr);
         grid-gap: 10px;
         width: 90vw;
         height: 90vw;
@@ -132,6 +133,63 @@ button:active {
 
     .brdspc {
         font-size: 74px;
+        line-height: calc((90vw - 20px)/ 3);
+    }
+
+    #gamedisplay {
+        width: 90vw;
+        height: 25vh;
+        position: absolute;
+        top: 67vh;
+        left: calc(50% - 45vw);
+        padding-top: 20px;
+    }
+
+    #playerinput {
+        top: calc(50% - 50vw);
+        left: calc(50% - 45vw);
+        width: 90vw;
+        height: 200px;
+        padding-top: 20px;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 6px 18px;
+    }
+
+    input {
+        margin-bottom: 15px;
+        margin-top: 5px;
+    }
+    
+    #displaytxt {
+        padding-bottom: 50px;
+        font-size: 20px;
+    }
+ }  */
+
+ /* Extra small devices (phones, 600px and down) */
+ @media only screen and (max-width: 600px) and (orientation: portrait) {
+    h1 {
+        font-size: 40px;
+        width: 90vw;
+        margin: 10px auto;
+        text-align: center;
+    }
+
+    #container {
+        grid-gap: 10px;
+        width: 90vw;
+        height: 90vw;
+        position: absolute;
+        top: calc(40% - (90vw / 2));
+        left: calc(50% - (90vw / 2));
+    }
+
+    .brdspc {
+        font-size: 74px;
+        line-height: calc((90vw - 20px)/ 3);
     }
 
     #gamedisplay {
@@ -168,7 +226,7 @@ button:active {
  }
 
  /* Small devices (portrait tablets and large phones, 600px and up) */
- @media only screen and (min-width: 600px) and (max-width: 767px) {
+ @media only screen and (min-width: 600px) and (max-width: 767px) and (orientation: portrait) {
     h1 {
         font-size: 50px;
         width: 90vw;
@@ -177,8 +235,6 @@ button:active {
     }
 
     #container {
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(3, 1fr);
         grid-gap: 20px;
         width: 90vw;
         height: 90vw;
@@ -189,6 +245,7 @@ button:active {
 
     .brdspc {
         font-size: 139px;
+        line-height: calc((90vw - 40px)/ 3);
     }
 
     #gamedisplay {
@@ -209,8 +266,8 @@ button:active {
     }
 
     button {
-        font-size: 20px;
-        padding: 9px 24px;
+        font-size: 16px;
+        padding: 6px 18px;
     }
 
     input {
@@ -223,9 +280,66 @@ button:active {
         font-size: 24px;
     }
  }
+
+ /* Medium devices (portrait tablets, 768px and up) */
+ @media only screen and (min-width: 768px) and (max-width: 991px) and (orientation: portrait) {
+    h1 {
+        font-size: 60px;
+        margin: 30px auto;
+        text-align: center;
+    }
+
+    #container {
+        grid-gap: 20px;
+        width: 90vw;
+        height: 90vw;
+        position: absolute;
+        top: calc(45% - 45vw);
+        left: calc(50% - 45vw);
+    }
+
+    .brdspc {
+        font-size: 145px;
+        line-height: calc((90vw - 40px)/ 3);
+    }
+
+    #gamedisplay {
+        width: 80vw;
+        height: calc(100vh - 90vw - 60px - 72px - 20px);
+        position: absolute;
+        bottom: 10px;
+        left: calc(50% - 40vw);
+        padding-top: 20px;
+    }
+
+    #playerinput {
+        top: calc(50% - 100px);
+        left: calc(50% - 200px);
+        width: 400px;
+        height: 200px;
+        padding-top: 20px;
+    }
+
+    button {
+        font-size: 16px;
+        padding: 6px 18px;
+    }
+
+    input {
+        margin-bottom: 10px;
+        margin-top: 5px;
+    }
+    
+    #displaytxt {
+        padding-bottom: 50px;
+        font-size: 24px;
+    }
+ }
+
+ /* landscape mode */
  
  /* Medium devices (landscape tablets, 768px and up) */
- @media only screen and (min-width: 768px) and (max-width: 991px) {
+ @media only screen and (min-width: 768px) and (max-width: 991px) and (orientation: landscape) {
     h1 {
         font-size: 60px;
         margin: 40px auto;
@@ -233,11 +347,9 @@ button:active {
     }
 
     #container {
-        grid-template-columns: repeat(3, 150px);
-        grid-template-rows: repeat(3, 150px);
         grid-gap: 20px;
-        width: 490px;
-        height: 490px;
+        width: 90vh;
+        height: 90vh;
         position: absolute;
         top: calc(50% - 245px);
         left: calc(50% - 245px);
@@ -245,6 +357,7 @@ button:active {
 
     .brdspc {
         font-size: 140px;
+        line-height: calc((90vh - 40px)/ 3);
     }
 
     #gamedisplay {
@@ -265,8 +378,8 @@ button:active {
     }
 
     button {
-        font-size: 20px;
-        padding: 9px 24px;
+        font-size: 16px;
+        padding: 6px 18px;
     }
 
     input {
@@ -281,47 +394,47 @@ button:active {
  }
  
  /* Large devices (laptops/desktops, 992px and up) */
- @media only screen and (min-width: 992px) and (max-width: 1199px) {
+ @media only screen and (min-width: 992px) and (max-width: 1199px) and (orientation: landscape) {
     h1 {
         font-size: 50px;
         padding-left: 10px;
     }
 
     #container {
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(3, 1fr);
         grid-gap: 20px;
-        width: 90vh;
-        height: 90vh;
+        width: 80vh;
+        height: 80vh;
         position: absolute;
-        top: calc(50% - 45vh);
-        left: calc(50% - 45vh);
+        top: calc(50% - 40vh);
+        right: calc(35% - 40vh);
     }
 
     .brdspc {
         font-size: 140px;
+        line-height: calc((80vh - 40px)/ 3);
     }
 
     #gamedisplay {
-        width: 400px;
-        height: 200px;
+        width: 300px;
+        height: 350px;
         position: absolute;
-        top: calc(50% - 100px);
+        top: calc(50% - 175px);
         left: 10px;
         padding-top: 20px;
     }
 
     #playerinput {
+        position: absolute;
         top: calc(50% - 100px);
-        left: calc(50% - 200px);
+        right: calc(35% - 200px);
         width: 400px;
         height: 200px;
         padding-top: 20px;
     }
 
     button {
-        font-size: 20px;
-        padding: 9px 24px;
+        font-size: 16px;
+        padding: 6px 18px;
     }
 
     input {
@@ -336,15 +449,13 @@ button:active {
  }
  
  /* Extra large devices (large laptops and desktops, 1200px and up) */
- @media only screen and (min-width: 1200px) {
+ @media only screen and (min-width: 1200px) and (orientation: landscape) {
     h1 {
         font-size: 50px;
         padding-left: 10px;
     }
 
     #container {
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(3, 1fr);
         grid-gap: 20px;
         width: 94vh;
         height: 94vh;
@@ -355,8 +466,7 @@ button:active {
 
     .brdspc {
         font-size: 25vh;
-        align-content: center;
-        line-height: 25vh;
+        line-height: calc((94vh - 40px)/ 3);
     }
 
     #gamedisplay {
@@ -377,8 +487,8 @@ button:active {
     }
 
     button {
-        font-size: 20px;
-        padding: 9px 24px;
+        font-size: 16px;
+        padding: 6px 18px;
         margin: 10px;
     }
 
