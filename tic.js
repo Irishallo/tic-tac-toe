@@ -28,6 +28,8 @@ const gameBoard = (() => {
       return placed;
     }
 
+    function computerPlay() {}
+
     function showBoard() {
       document.getElementById("topleft").innerText = board[0];
       document.getElementById("topmid").innerText = board[1];
@@ -124,14 +126,15 @@ const gameBoard = (() => {
     
   })();
 
-  const Player = (name, symbol) => {
+  const Player = (name, symbol, isC) => {
     const getName  = name;
-     const getToken = symbol;
-    return {getName , getToken}
+    const getToken = symbol;
+    const isComputer = isC;
+    return {getName , getToken , isComputer}
   };
   
-  const player1 = Player('player1', "X");
-  const player2 = Player('player2', "O");
+  const player1 = Player('player1', "X" , "no");
+  const player2 = Player('player2', "O" , "no");
 
   const displayController = (() => {
     let activePlayer = 1;
@@ -184,6 +187,22 @@ const gameBoard = (() => {
       gameBoard.restartGame(1);
     }
 
+    function showInput2 () {
+      const input2 = document.querySelectorAll(".player2name");
+      input2.forEach((item) => {
+        item.classList.add("plchecked");
+        item.classList.remove("compchecked");
+      })
+    }
+
+    function hideInput2 () {
+      const input2 = document.querySelectorAll(".player2name");
+      input2.forEach((item) => {
+        item.classList.remove("plchecked");
+        item.classList.add("compchecked");
+      })
+    }
+
 
     const topL = document.getElementById("topleft");
     const topM = document.getElementById("topmid");
@@ -197,7 +216,17 @@ const gameBoard = (() => {
     const startBtn = document.getElementById("start");
     const restartBtn = document.getElementById("restart");
     const nameChangeBtn = document.getElementById("namechange");
+    const radioComp = document.getElementById("computerplay");
+    const radioPl2 = document.getElementById("player");
 
+    radioComp.addEventListener("click", () => {
+      hideInput2();
+    });
+
+    radioPl2.addEventListener("click", () => {
+      showInput2();
+    });
+    
     startBtn.addEventListener("click", () => {
       startGame();
     });
@@ -246,5 +275,5 @@ const gameBoard = (() => {
       gameBoard.changeBoard(activePlayer, 8, gameStart);
     });
     
-    return {changeActive}
+    return {changeActive , showInput2}
   })();

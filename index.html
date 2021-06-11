@@ -30,10 +30,15 @@
    
 
     <div id="playerinput">
-        <label for="pl1">Player1 name (X):</label><br>
+        <label for="pl1">Player1 name (X):</label>
         <input type="text" id="pl1" name="pl1" placeholder="Player1"><br>
-        <label for="pl2">Player2 name (O):</label><br>
-        <input type="text" id="pl2" name="pl2" placeholder="Player2"><br>
+        <label for="player2choice">Player2 (X)</label><br>
+        <input type="radio" id="computerplay" name="player2choice" value="computerplay" checked>
+        <label for="computerplay">computer</label>
+        <input type="radio" id="player" name="player2choice" value="player">
+        <label for="player">player2</label><br>
+        <label for="pl2" class="player2name compchecked">Player2 name (O):</label>
+        <input type="text" id="pl2" name="pl2" placeholder="Player2" class="player2name compchecked"><br>
         <button id="start">Start</button>
     </div>
     

@@ -112,7 +112,15 @@ button:active {
     transform: translateY(2px);
 }
 
-/* portrait mode */  
+.compchecked {
+    display: none;
+}
+
+.plchecked {
+    display: inherit;
+}
+
+ /* portrait mode */  
 
  /* Extra small devices (phones, 600px and down) */
  @media only screen and (max-width: 600px) and (orientation: portrait) {
