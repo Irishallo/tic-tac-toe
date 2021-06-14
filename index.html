@@ -25,19 +25,19 @@
     <div id="gamedisplay">
         <div id="displaytxt">it's player1s turn</div>
         <button id="restart">restart</button>
-        <button id="namechange">restart + change names</button>
+        <button id="namechange">change names / computer</button>
     </div>
    
 
     <div id="playerinput">
-        <label for="pl1">Player1 name (X):</label>
+        <label for="pl1" class="labelbold">Player1 name (X):</label>
         <input type="text" id="pl1" name="pl1" placeholder="Player1"><br>
-        <label for="player2choice">Player2 (X)</label><br>
+        <label for="player2choice" class="labelbold">Player2 (X)</label><br>
         <input type="radio" id="computerplay" name="player2choice" value="computerplay" checked>
         <label for="computerplay">computer</label>
         <input type="radio" id="player" name="player2choice" value="player">
         <label for="player">player2</label><br>
-        <label for="pl2" class="player2name compchecked">Player2 name (O):</label>
+        <label for="pl2" class="player2name compchecked labelbold">Player2 name (O):</label>
         <input type="text" id="pl2" name="pl2" placeholder="Player2" class="player2name compchecked"><br>
         <button id="start">Start</button>
     </div>

@@ -11,6 +11,9 @@ const gameBoard = (() => {
           showBoard();
           displayController.changeActive(placed);
           checkWin();
+          if(player2.isComputer == "yes") {
+            setTimeout(gameBoard.computerPlay(), 10000);
+          }
         } else if (active == 2) {
           board[spot] = player2.getToken;
           placed = "yes";
@@ -28,7 +31,17 @@ const gameBoard = (() => {
       return placed;
     }
 
-    function computerPlay() {}
+    function computerPlay() {
+      console.log("computer is playing!");
+      const random = Math.floor(Math.random()*board.length);
+      console.log(random);
+      if(board[random] == "") {
+        console.log("yeey het kan!")
+        changeBoard(2, random, "yes");
+      } else {
+        console.log("bezet");
+      }
+    }
 
     function showBoard() {
       document.getElementById("topleft").innerText = board[0];
@@ -122,7 +135,7 @@ const gameBoard = (() => {
       
     }
 
-    return {changeBoard, showBoard , checkWin , board , restartGame};
+    return {changeBoard, showBoard , checkWin , board , restartGame , computerPlay};
     
   })();
 
@@ -134,7 +147,7 @@ const gameBoard = (() => {
   };
   
   const player1 = Player('player1', "X" , "no");
-  const player2 = Player('player2', "O" , "no");
+  const player2 = Player('player2', "O" , "yes");
 
   const displayController = (() => {
     let activePlayer = 1;
@@ -157,13 +170,15 @@ const gameBoard = (() => {
 
     function startGame () {
       if(document.getElementById("pl1").value == "") {
-        player1.name = "player1";
+        player1.name = "Player1";
       } else {
         player1.name = document.getElementById("pl1").value;
       }
       
-      if(document.getElementById("pl2").value == "") {
-        player2.name = "player2";
+      if(player2.isComputer == "yes") {
+        player2.name = "Computer";
+      } else if(document.getElementById("pl2").value == "") {
+        player2.name = "Player2";
       } else {
         player2.name = document.getElementById("pl2").value;
       }
@@ -192,6 +207,7 @@ const gameBoard = (() => {
       input2.forEach((item) => {
         item.classList.add("plchecked");
         item.classList.remove("compchecked");
+        player2.isComputer = "no";
       })
     }
 
@@ -200,6 +216,7 @@ const gameBoard = (() => {
       input2.forEach((item) => {
         item.classList.remove("plchecked");
         item.classList.add("compchecked");
+        player2.isComputer = "yes";
       })
     }
 
@@ -275,5 +292,5 @@ const gameBoard = (() => {
       gameBoard.changeBoard(activePlayer, 8, gameStart);
     });
     
-    return {changeActive , showInput2}
+    return {changeActive , showInput2 , activePlayer , gameStart}
   })();

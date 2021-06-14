@@ -116,8 +116,8 @@ button:active {
     display: none;
 }
 
-.plchecked {
-    display: inherit;
+.labelbold {
+    font-weight: 700;
 }
 
  /* portrait mode */  
