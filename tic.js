@@ -12,7 +12,7 @@ const gameBoard = (() => {
           displayController.changeActive(placed);
           checkWin();
           if(player2.isComputer == "yes") {
-            setTimeout(gameBoard.computerPlay(), 10000);
+            gameBoard.computerPlay();
           }
         } else if (active == 2) {
           board[spot] = player2.getToken;
@@ -32,15 +32,25 @@ const gameBoard = (() => {
     }
 
     function computerPlay() {
-      console.log("computer is playing!");
-      const random = Math.floor(Math.random()*board.length);
-      console.log(random);
-      if(board[random] == "") {
-        console.log("yeey het kan!")
-        changeBoard(2, random, "yes");
-      } else {
-        console.log("bezet");
-      }
+      setTimeout(function() {
+        console.log("computer is playing!");
+        let stopLoop = 0;
+        do {
+          let random = Math.floor(Math.random()*board.length);
+          if(board[random] == "") {
+            console.log("yeey het kan!")
+            changeBoard(2, random, "yes");
+            stopLoop = 1;
+          } else if(!board[0] == "" && !board[1] == "" && !board[2] == "" && !board[3] == "" &&
+          !board[4] == "" && !board[5] == "" && !board[6] == "" && !board[7] == "" && !board[8] == "") {
+            console.log("computer can't play because game is over");
+            stopLoop = 1;
+          } else {
+          console.log("bezet");
+          }
+        }
+        while(stopLoop < 1);
+        }, 5000);
     }
 
     function showBoard() {
@@ -124,10 +134,17 @@ const gameBoard = (() => {
       showBoard();
       if(activePlayer == 1) {
         const displayTxt = document.getElementById("displaytxt");
-        displayTxt.innerHTML = `(${player2.getToken}) it's ${player2.name}'s turn`;
+        displayTxt.innerHTML = `(${player1.getToken}) it's ${player1.name}'s turn`;
+        console.log(activePlayer);
       } else if(activePlayer == 2){
         const displayTxt = document.getElementById("displaytxt");
-        displayTxt.innerHTML = `(${player1.getToken}) it's ${player1.name}'s turn`;
+        displayTxt.innerHTML = `(${player2.getToken}) it's ${player2.name}'s turn`;
+        console.log(activePlayer);
+        if(player2.isComputer == "yes") {
+          gameBoard.computerPlay();
+        } else {
+          return
+        }
       } else {
         console.log("error");
         console.log(activePlayer);
