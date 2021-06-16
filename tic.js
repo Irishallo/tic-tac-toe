@@ -12,8 +12,8 @@ const gameBoard = (() => {
           displayController.changeActive(placed);
           checkWin();
           if(player2.isComputer == "yes") {
-            gameBoard.computerPlay();
-          }
+            computerPlay(active);
+          } else {}
         } else if (active == 2) {
           board[spot] = player2.getToken;
           placed = "yes";
@@ -31,15 +31,15 @@ const gameBoard = (() => {
       return placed;
     }
 
-    function computerPlay() {
-      setTimeout(function() {
+    function computerPlay(active) {
+      
         console.log("computer is playing!");
         let stopLoop = 0;
         do {
           let random = Math.floor(Math.random()*board.length);
           if(board[random] == "") {
             console.log("yeey het kan!")
-            changeBoard(2, random, "yes");
+            setTimeout(function() {changeBoard(2, random, "yes")}, 5000);
             stopLoop = 1;
           } else if(!board[0] == "" && !board[1] == "" && !board[2] == "" && !board[3] == "" &&
           !board[4] == "" && !board[5] == "" && !board[6] == "" && !board[7] == "" && !board[8] == "") {
@@ -49,8 +49,8 @@ const gameBoard = (() => {
           console.log("bezet");
           }
         }
-        while(stopLoop < 1);
-        }, 5000);
+        while(stopLoop < 1 && active > 1);
+        
     }
 
     function showBoard() {
@@ -141,7 +141,7 @@ const gameBoard = (() => {
         displayTxt.innerHTML = `(${player2.getToken}) it's ${player2.name}'s turn`;
         console.log(activePlayer);
         if(player2.isComputer == "yes") {
-          gameBoard.computerPlay();
+          computerPlay(activePlayer);
         } else {
           return
         }
@@ -152,7 +152,7 @@ const gameBoard = (() => {
       
     }
 
-    return {changeBoard, showBoard , checkWin , board , restartGame , computerPlay};
+    return {changeBoard, showBoard , checkWin , board , restartGame};
     
   })();
 
