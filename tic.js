@@ -196,8 +196,10 @@ const gameBoard = (() => {
         player2.name = "Computer";
       } else if(document.getElementById("pl2").value == "") {
         player2.name = "Player2";
+        player2.isComputer = "no";
       } else {
         player2.name = document.getElementById("pl2").value;
+        player2.isComputer = "no";
       }
       
       const playerInput = document.getElementById("playerinput");
